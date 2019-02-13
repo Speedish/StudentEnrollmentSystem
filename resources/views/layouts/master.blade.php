@@ -25,7 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
     </ul>
 
-    <!-- SEARCH FORM -->
+    <!-- SEARCH FORM 
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
     </form>
-
+    -->
     <!-- Right navbar links -->
   </nav>
   <!-- /.navbar -->
@@ -74,7 +74,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Dashboard
               </p>
             </router-link>
-          </li>          
+          </li> 
+          @if (!Auth::guest() && Auth::user()->type === 'admin')         
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
@@ -83,17 +84,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-            @if (!Auth::guest() && Auth::user()->type === 'admin')
+            <ul class="nav nav-treeview">          
             <li class="nav-item">
                 <router-link to="/user" class="nav-link">
                   <i class="fa fa-users nav-icon"></i>
                   <p>User</p>
                 </router-link>
-              </li>
-            @else
-            @endif 
-              
+              </li>                         
               <li class="nav-item">
                 <router-link to="/course" class="nav-link">
                   <i class="fab fa-leanpub nav-icon"></i>
@@ -102,6 +99,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+          @else
+          @endif 
           <li class="nav-item">
                 <router-link to="/enrollment" class="nav-link">
                   <i class="fas fa-sign-in-alt nav-icon"></i>
